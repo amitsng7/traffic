@@ -1,0 +1,187 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+<style>
+#circle
+{
+width:100px;
+height:100px;
+border-radius:50%;
+font-size:50px;
+background-color: red;
+position: absolute;
+text-align:center;
+margin-top: 0px;
+margin-left: 800px;
+
+}
+</style>
+<div id = "circle"></div>
+<button onclick=docReady() onkeydown="" onkeyup="" >Play</button>
+<canvas id="myCanvas" width="550" height="400" style="border:1px solid black;"></canvas>
+
+
+<script>
+var horizontal_Velocity;
+var vertical_Velocity;
+var x_co = 0;
+var y_co = 0;
+var signal = "yellow";
+var cir_circle;
+
+function green_circle(){
+document.getElementById('circle').style.backgroundColor = "green";
+cir_circle = "rgb(255, 255, 0)";
+		console.log(cir_circle);
+		setTimeout('yellow_circle()', 10000);
+}
+
+function yellow_circle(){
+document.getElementById('circle').style.backgroundColor = "yellow";
+cir_circle = "rgb(0, 128, 0)";
+		console.log(cir_circle);
+		setTimeout('red_circle()', 5000);
+}
+
+function red_circle(){
+document.getElementById('circle').style.backgroundColor = "red";
+cir_circle = "rgb(255, 0, 0)";
+		console.log(cir_circle);
+docReady();
+}
+function draw(x,y){
+                var canvas = document.getElementById('myCanvas');
+		var ctx = canvas.getContext('2d');
+		ctx.save();
+		ctx.clearRect(0,0,550,400);
+		ctx.fillStyle = "rgba(0,200,0, 1)";
+		ctx.fillRect (x,y,50,50);
+		ctx.restore();
+}
+
+            function leftArrowPressed(x,y) {
+		if (horizontal_Velocity == -1 && vertical_Velocity == ' '){
+		draw(x,y);
+		x -= 3;
+		x_co = x;
+		y_co = y; 
+		if(cir_circle == "rgb(255, 255, 0)"){
+			var looptimer = setTimeout('leftArrowPressed('+x+', '+y+')', 40);
+		return(x_co,y_co);
+		}
+		else if(cir_circle == "rgb(255, 0, 0)"){
+			return;
+		}
+		else{
+			var looptimer = setTimeout('leftArrowPressed('+x+', '+y+')', 80);
+		return(x_co,y_co);
+		}
+            }
+}
+            function rightArrowPressed(x,y) {
+		if (horizontal_Velocity == 1 && vertical_Velocity == ' '){
+		draw(x,y);
+		x += 3;
+		x_co = x;
+		y_co = y; 
+		if(cir_circle == "rgb(255, 255, 0)"){
+			var looptimer = setTimeout('rightArrowPressed('+x+', '+y+')', 40);
+		return(x_co,y_co);
+		}
+		else if(cir_circle == "rgb(255, 0, 0)"){
+			return;
+		}
+		else{
+			var looptimer = setTimeout('rightArrowPressed('+x+', '+y+')', 80);
+		return(x_co,y_co);
+		}
+}
+}
+
+            function upArrowPressed(x,y) {
+		if (horizontal_Velocity == ' ' && vertical_Velocity == -1){
+		console.log("up");
+		draw(x,y);
+		y -= 3;
+		x_co = x;
+		y_co = y; 
+		if(cir_circle == "rgb(255, 255, 0)"){
+			var looptimer = setTimeout('upArrowPressed('+x+', '+y+')', 40);
+		return(x_co,y_co);
+		}
+		else if(cir_circle == "rgb(255, 0, 0)"){
+			return;
+		}
+		else{
+			var looptimer = setTimeout('upArrowPressed('+x+', '+y+')', 80);
+		return(x_co,y_co);
+		}
+}
+}
+
+            function downArrowPressed(x,y) {
+		if (horizontal_Velocity == ' ' && vertical_Velocity == 1){
+		draw(x,y);
+		y += 3;
+		x_co = x;
+		y_co = y; 
+		if(cir_circle == "rgb(255, 255, 0)"){
+			var looptimer = setTimeout('downArrowPressed('+x+', '+y+')', 40);
+		return(x_co,y_co);
+		}
+		else if(cir_circle == "rgb(255, 0, 0)"){
+			return;
+		}
+		else{
+			var looptimer = setTimeout('downArrowPressed('+x+', '+y+')', 80);
+		return(x_co,y_co);
+		}
+}
+}
+            function moveSelection(evt) {
+	console.log("key event")
+	if(cir_circle == "rgb(0, 128, 0)" || cir_circle == "rgb(255, 255, 0)"){
+                switch (evt.keyCode) {
+                    case 37:
+		    vertical_Velocity = ' ';
+		    horizontal_Velocity = -1;
+                    leftArrowPressed(x_co,y_co);
+                    break;
+                    case 39:
+		    vertical_Velocity = ' ';
+		    horizontal_Velocity = 1;
+                    rightArrowPressed(x_co,y_co);
+                    break;
+                    case 38:
+		    vertical_Velocity = -1;
+		    horizontal_Velocity = ' ';
+                    upArrowPressed(x_co,y_co);
+                    break;
+                    case 40:
+		    vertical_Velocity = 1;
+		    horizontal_Velocity = ' ';
+			console.log(x_co);
+		console.log(y_co);
+                    downArrowPressed(x_co,y_co);
+                    break;
+                    }
+}
+else{
+alert("red signal");
+return;
+}
+                }
+
+
+        function docReady()
+        {
+setTimeout('green_circle()', 5000);
+		document.addEventListener('keydown', moveSelection);
+
+        }
+</script>
+</body>
+</html> 
