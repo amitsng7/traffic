@@ -8,21 +8,18 @@ var cir_circle;
 function green_circle(){
 	document.getElementById('circle').style.backgroundColor = "green";
 	cir_circle = "rgb(255, 255, 0)";
-	console.log(cir_circle);
 	setTimeout('yellow_circle()', 10000);
 }
 
 function yellow_circle(){
 	document.getElementById('circle').style.backgroundColor = "yellow";
 	cir_circle = "rgb(0, 128, 0)";
-	console.log(cir_circle);
 	setTimeout('red_circle()', 5000);
 }
 
 function red_circle(){
 	document.getElementById('circle').style.backgroundColor = "red";
 	cir_circle = "rgb(255, 0, 0)";
-	console.log(cir_circle);
 	docReady();
 }
 function draw(x,y){
@@ -42,7 +39,6 @@ function leftArrowPressed(x,y) {
 			x_co = x;
 			y_co = y; 
 			draw(x,y);
-			console.log(x_co, y_co);
 			return(x_co,y_co);
 		}
 		else if(cir_circle == "rgb(255, 0, 0)"){
@@ -53,7 +49,6 @@ function leftArrowPressed(x,y) {
 			x_co = x;
 			y_co = y; 
 			draw(x,y);
-			console.log(x_co, y_co);
 			return(x_co,y_co);
 		}
 	}
@@ -65,7 +60,6 @@ function rightArrowPressed(x,y) {
 			x_co = x;
 			y_co = y; 
 			draw(x,y);
-			console.log(x_co, y_co);
 			return(x_co,y_co);
 		}
 		else if(cir_circle == "rgb(255, 0, 0)"){
@@ -76,7 +70,6 @@ function rightArrowPressed(x,y) {
 			x_co = x;
 			y_co = y; 
 			draw(x,y);
-			console.log(x_co, y_co);
 			return(x_co,y_co);
 		}
 	}
@@ -90,7 +83,6 @@ function upArrowPressed(x,y) {
 			x_co = x;
 			y_co = y; 
 			draw(x,y);
-			console.log(x_co, y_co);
 			return(x_co,y_co);
 		}
 			else if(cir_circle == "rgb(255, 0, 0)"){
@@ -101,7 +93,6 @@ function upArrowPressed(x,y) {
 			x_co = x;
 			y_co = y; 
 			draw(x,y);
-			console.log(x_co, y_co);
 			return(x_co,y_co);
 		}
 	}
@@ -114,7 +105,6 @@ function downArrowPressed(x,y) {
 			x_co = x;
 			y_co = y; 
 			draw(x,y);
-			console.log(x_co, y_co);
 			return(x_co,y_co);
 		}
 		else if(cir_circle == "rgb(255, 0, 0)"){
@@ -125,7 +115,6 @@ function downArrowPressed(x,y) {
 			x_co = x;
 			y_co = y; 
 			draw(x,y);
-			console.log(x_co, y_co);
 			return(x_co,y_co);
 		}
 	}
@@ -153,8 +142,6 @@ function moveSelection(evt) {
 		case 40:
 			vertical_Velocity = 1;
 			horizontal_Velocity = ' ';
-			console.log(x_co);
-			console.log(y_co);
 			downArrowPressed(x_co,y_co);
 			break;
 		}
